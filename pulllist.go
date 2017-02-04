@@ -9,6 +9,7 @@ import(
     "io/ioutil"
     "encoding/json"
     "sort"
+    "strings"
 )
 
 type AllJson struct {
@@ -31,6 +32,12 @@ func start_of_day(t time.Time) time.Time {
     t_second := t.Second()
     t_nanosecond := t.Nanosecond()
     return t.Add(-time.Duration(t_hour)*time.Hour).Add(-time.Duration(t_minute)*time.Minute).Add(-time.Duration(t_second)*time.Second).Add(-time.Duration(t_nanosecond))
+}
+
+func ToCamel(s string) string {
+	s = strings.ToLower(s)
+	_ := strings.Split(s, " ")
+	return s
 }
 
 func main() {
@@ -77,9 +84,9 @@ func main() {
 
     for _, v := range alljson.Results {
         if v.Fields.Type == "comic" {
-            comics = append(comics, v.Fields.Title)
+            comics = append(comics, strings.ToLower(v.Fields.Title))
         } else if v.Fields.Type == "graphic_novel" {
-            graphic_novels = append(graphic_novels, v.Fields.Title)
+            graphic_novels = append(graphic_novels, strings.ToLower(v.Fields.Title))
         }
     }
 
