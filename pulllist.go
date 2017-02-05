@@ -103,6 +103,7 @@ func main() {
     for _, v := range(comics) {
         fmt.Println(v)
     }
+	fmt.Println("")
     fmt.Println("Graphic Novels:")
     for _, v := range(graphic_novels) {
         fmt.Println(v)
