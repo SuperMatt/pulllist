@@ -108,5 +108,4 @@ func main() {
     for _, v := range(graphic_novels) {
         fmt.Println(v)
     }
-
 }
