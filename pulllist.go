@@ -36,8 +36,15 @@ func start_of_day(t time.Time) time.Time {
 
 func ToCamel(s string) string {
 	s = strings.ToLower(s)
-	_ := strings.Split(s, " ")
-	return s
+	ss := strings.Split(s, " ")
+	var cs []string
+	for _,v := range(ss) {
+		l := string(v[0])
+		ns := strings.Replace(v, l, strings.ToUpper(l), 1)
+		cs = append(cs, ns)
+	}
+	rs := strings.Join(cs, " ")
+	return rs
 }
 
 func main() {
@@ -84,9 +91,9 @@ func main() {
 
     for _, v := range alljson.Results {
         if v.Fields.Type == "comic" {
-            comics = append(comics, strings.ToLower(v.Fields.Title))
+            comics = append(comics, ToCamel(v.Fields.Title))
         } else if v.Fields.Type == "graphic_novel" {
-            graphic_novels = append(graphic_novels, strings.ToLower(v.Fields.Title))
+            graphic_novels = append(graphic_novels, ToCamel(v.Fields.Title))
         }
     }
 
