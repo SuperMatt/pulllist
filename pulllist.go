@@ -39,9 +39,11 @@ func ToCamel(s string) string {
 	ss := strings.Split(s, " ")
 	var cs []string
 	for _,v := range(ss) {
-		l := string(v[0])
-		ns := strings.Replace(v, l, strings.ToUpper(l), 1)
-		cs = append(cs, ns)
+		if len(v) > 0 {
+			l := string(v[0])
+			ns := strings.Replace(v, l, strings.ToUpper(l), 1)
+			cs = append(cs, ns)
+		}
 	}
 	rs := strings.Join(cs, " ")
 	return rs
